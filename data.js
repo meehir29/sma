@@ -99,7 +99,7 @@ window.SMA_DATA = {
     tagline: "A podcast from SMA Consulting",
     blurb: "Three of our principals, one mic, no keynote theatre. Honest conversations about advisory, AI and the work — the kind a critical friend would actually have. Unfiltered, warm, and precise.",
     hosts: ["avneet", "stephen", "meehir"],
-    status: "Series 1 · launching soon",
+    status: "Series 1 · Now live",
     episodes: [
       {
         no: "S1 · E1",
@@ -107,7 +107,8 @@ window.SMA_DATA = {
         sub: "How three independent consultants ended up building something unusual — and what a good advisor actually does.",
         quote: "We mobilise you. We don’t replace you.",
         topics: ["Advisory", "Partnership", "Why now"],
-        length: "≈ 35 min",
+        length: "53:25",
+        youtubeId: "3t0z7GjU358",
         facilitator: "Meehir",
       },
       {
@@ -116,7 +117,8 @@ window.SMA_DATA = {
         sub: "What advisors are really seeing on the ground — and why the fear is as real as the opportunity.",
         quote: "The question isn’t whether to use AI. It’s whether you have someone who can tell when it’s wrong.",
         topics: ["AI", "Operating reality", "Judgement"],
-        length: "≈ 35 min",
+        length: "42:42",
+        youtubeId: "LGGWHsVwfSs",
         facilitator: "Avneet",
       },
     ],

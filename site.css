@@ -190,6 +190,59 @@ section { scroll-margin-top: 80px; }
   display: inline-flex; align-items: center; gap: 0.4rem;
 }
 
+/* ---- Episode YouTube embed ---- */
+.ep__video {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--navy-900);
+  position: relative;
+  flex-shrink: 0;
+}
+.ep__thumb {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+.ep__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s var(--ease-out);
+}
+.ep__thumb:hover img { transform: scale(1.03); }
+.ep__play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: transform var(--dur) var(--ease-out);
+  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5));
+}
+.ep__thumb:hover .ep__play-btn { transform: translate(-50%, -50%) scale(1.12); }
+.ep__video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.ep__yt-link {
+  font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--teal-300);
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  transition: color var(--dur) var(--ease-out);
+}
+.ep__yt-link:hover { color: #fff; }
+.ep--playing { border-color: rgba(143,196,180,0.5) !important; }
+
 /* ---------------- DELIVERY ---------------- */
 .delivery {
   background: var(--surface-ink);

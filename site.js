@@ -262,6 +262,7 @@ function Principals() {
 function Podcast() {
   const pc = D.podcast;
   const byPhoto = Object.fromEntries(D.principals.map(p => [p.photo, p]));
+  const [playing, setPlaying] = useState(null);
   return /*#__PURE__*/React.createElement("section", {
     className: "section podcast",
     id: "podcast"
@@ -298,31 +299,71 @@ function Podcast() {
     className: "dot"
   }), " ", pc.status)))), /*#__PURE__*/React.createElement("div", {
     className: "podcast__episodes"
-  }, pc.episodes.map(ep => /*#__PURE__*/React.createElement("article", {
-    className: "ep",
-    key: ep.no
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "ep__top"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "ep__no"
-  }, ep.no), /*#__PURE__*/React.createElement("span", {
-    className: "ep__len"
-  }, ep.length)), /*#__PURE__*/React.createElement("h3", {
-    className: "ep__title"
-  }, ep.title), /*#__PURE__*/React.createElement("p", {
-    className: "ep__sub"
-  }, ep.sub), /*#__PURE__*/React.createElement("blockquote", {
-    className: "ep__quote"
-  }, ep.quote), /*#__PURE__*/React.createElement("div", {
-    className: "ep__foot"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "ep__topics"
-  }, ep.topics.map(t => /*#__PURE__*/React.createElement("span", {
-    key: t,
-    className: "ep__topic"
-  }, t))), /*#__PURE__*/React.createElement("span", {
-    className: "ep__soon"
-  }, "Coming soon"))))))));
+  }, pc.episodes.map(ep => {
+    const isPlaying = playing === ep.no;
+    return /*#__PURE__*/React.createElement("article", {
+      className: "ep" + (isPlaying ? " ep--playing" : ""),
+      key: ep.no
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "ep__top"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "ep__no"
+    }, ep.no), /*#__PURE__*/React.createElement("span", {
+      className: "ep__len"
+    }, ep.length)), /*#__PURE__*/React.createElement("h3", {
+      className: "ep__title"
+    }, ep.title), /*#__PURE__*/React.createElement("p", {
+      className: "ep__sub"
+    }, ep.sub), /*#__PURE__*/React.createElement("blockquote", {
+      className: "ep__quote"
+    }, ep.quote), ep.youtubeId ? /*#__PURE__*/React.createElement("div", {
+      className: "ep__video"
+    }, isPlaying ? /*#__PURE__*/React.createElement("iframe", {
+      src: "https://www.youtube.com/embed/" + ep.youtubeId + "?autoplay=1",
+      title: ep.title,
+      frameBorder: "0",
+      allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+      allowFullScreen: true
+    }) : /*#__PURE__*/React.createElement("button", {
+      className: "ep__thumb",
+      onClick: () => setPlaying(ep.no),
+      "aria-label": "Watch " + ep.title
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "https://img.youtube.com/vi/" + ep.youtubeId + "/maxresdefault.jpg",
+      alt: ep.title,
+      loading: "lazy"
+    }), /*#__PURE__*/React.createElement("span", {
+      className: "ep__play-btn"
+    }, /*#__PURE__*/React.createElement("svg", {
+      viewBox: "0 0 72 72",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "64",
+      height: "64"
+    }, /*#__PURE__*/React.createElement("circle", {
+      cx: "36",
+      cy: "36",
+      r: "36",
+      fill: "rgba(0,0,0,0.55)"
+    }), /*#__PURE__*/React.createElement("polygon", {
+      points: "29,22 54,36 29,50",
+      fill: "white"
+    }))))) : null, /*#__PURE__*/React.createElement("div", {
+      className: "ep__foot"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "ep__topics"
+    }, ep.topics.map(t => /*#__PURE__*/React.createElement("span", {
+      key: t,
+      className: "ep__topic"
+    }, t))), ep.youtubeId ? /*#__PURE__*/React.createElement("a", {
+      href: "https://youtu.be/" + ep.youtubeId,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: "ep__yt-link"
+    }, "Watch on YouTube \u2197") : /*#__PURE__*/React.createElement("span", {
+      className: "ep__soon"
+    }, "Coming soon")));
+  })))));
 }
 
 /* ================= PROVEN DELIVERY ================= */
